@@ -72,7 +72,7 @@ public class CryptoService {
 
 
     @TargetApi(23)
-    public KeyPair createKeyPair(String keyName, boolean invalidatedByBiometricEnrollment) throws CryptoException
+    public KeyPair createKeyPair(String keyName, boolean invalidatedByBiometricEnrollment, int authenticationTimeout) throws CryptoException
 	{
 		KeyPair keyPair = null;
 
@@ -96,6 +96,9 @@ public class CryptoService {
             // This call is only available on API level >= 24.
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 				builder.setInvalidatedByBiometricEnrollment(invalidatedByBiometricEnrollment);
+				if (authenticationTimeout > 0) {
+					builder.setUserAuthenticationValidityDurationSeconds(authenticationTimeout);
+				}
 			}
 
 			keyPairGenerator.initialize(builder.build());

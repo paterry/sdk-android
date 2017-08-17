@@ -101,14 +101,26 @@ public class FingerprintService {
     public String createFingerprintKeyPair()
         throws FingerprintException
     {
-        return createFingerprintKeyPair(Constant.CITIZEN_FINGERPRINT_AUTH_KEY);
+        return createFingerprintKeyPair(Constant.CITIZEN_FINGERPRINT_AUTH_KEY, 0);
     }
 
     public String createFingerprintKeyPair(String keyName)
         throws FingerprintException
     {
+        return createFingerprintKeyPair(keyName, 0);
+    }
+
+    public String createFingerprintKeyPair(int authenticationTimeout)
+        throws FingerprintException
+    {
+        return createFingerprintKeyPair(Constant.CITIZEN_FINGERPRINT_AUTH_KEY, authenticationTimeout);
+    }
+
+    public String createFingerprintKeyPair(String keyName, int authenticationTimeout)
+        throws FingerprintException
+    {
         try {
-            cryptoService.createKeyPair(keyName, true);
+            cryptoService.createKeyPair(keyName, true, authenticationTimeout);
             return cryptoService.getEncodedPublicKey(keyName);
         } catch (CryptoException e) {
             throw new FingerprintException(e.getMessage());
