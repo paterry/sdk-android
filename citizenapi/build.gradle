@@ -15,7 +15,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0.2"
+        versionName "1.0.3"
         multiDexEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -90,7 +90,7 @@ dependencies {
 //   ./gradlew citizenapi:bintrayUpload
 //
 
-def bintrayVersion = '1.0.2'
+def bintrayVersion = '1.0.3'
 def bintrayArtifactId = 'citizen-android-sdk'
 def bintrayGroupId = 'is.citizen'
 

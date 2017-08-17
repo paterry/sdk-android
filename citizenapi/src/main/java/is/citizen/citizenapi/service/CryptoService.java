@@ -93,12 +93,13 @@ public class CryptoService {
 					.setAlgorithmParameterSpec(new ECGenParameterSpec(REST_AUTH_EC_CURVE))
 					.setUserAuthenticationRequired(true);
 
-            // This call is only available on API level >= 24.
+			// This call is only available on API level >= 24.
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 				builder.setInvalidatedByBiometricEnrollment(invalidatedByBiometricEnrollment);
-				if (authenticationTimeout > 0) {
-					builder.setUserAuthenticationValidityDurationSeconds(authenticationTimeout);
-				}
+			}
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && authenticationTimeout > 0) {
+				builder.setUserAuthenticationValidityDurationSeconds(authenticationTimeout);
 			}
 
 			keyPairGenerator.initialize(builder.build());
