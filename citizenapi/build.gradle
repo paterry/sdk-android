@@ -90,7 +90,7 @@ dependencies {
 //   ./gradlew citizenapi:bintrayUpload
 //
 
-def bintrayVersion = '1.0.3'
+def bintrayVersion = '1.0.6'
 def bintrayArtifactId = 'citizen-android-sdk'
 def bintrayGroupId = 'is.citizen'
 
